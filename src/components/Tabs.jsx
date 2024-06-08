@@ -1,9 +1,10 @@
 import React from "react";
 
+
 const Tabs = ({ type, setType }) => {
   return (
     <>
-      <div className="flex pb-4 gap-6 justify-center mt-[8%] mb-6 font-mono">
+      <div className="flex pb-4 gap-6 justify-center mt-[8%] mb-6 ">
         <button
           onClick={() => setType("repos")}
           className={`${type === "repos" && "text-blue-500"}`}>
@@ -20,6 +21,7 @@ const Tabs = ({ type, setType }) => {
           Followers
         </button>
       </div>
+      
     </>
   );
 };
