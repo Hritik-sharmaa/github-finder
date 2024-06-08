@@ -1,40 +1,39 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import UserContainer from "../components/UserContainer";
 
-const User = ({userRef}) => {
+const User = ({ searchQuery }) => {
   const [users, setUsers] = useState([]);
-  const URL = "https://api.github.com/users";
+  const [error, setError] = useState(null);
 
-  const userData = async () => {
+  const fetchUsers = async (url) => {
     try {
-      const res = await fetch(URL);
+      const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`Error: ${res.status}`);
+      }
       const data = await res.json();
-      // console.log("Fetched Users: ", data);
-      setUsers(data);
+      setUsers(Array.isArray(data) ? data : [data]);
+      setError(null);
     } catch (error) {
-      // console.error("Error fetching users: ", error);
+      setError(error.message);
+      setUsers([]);
     }
   };
 
-  const searchUser = async (username) => {
-    try{
-        const res = await fetch(URL + `/${username}`)
-        const data = await res.json();
-        setUsers([data])
-    }
-    catch(error){
-        console.log("error fetching data: ", error);
-    }
-
-  }
-
   useEffect(() => {
-    userData();
-  }, []);
+    const url = searchQuery
+      ? `https://api.github.com/users/${encodeURIComponent(searchQuery)}`
+      : "https://api.github.com/users";
+    fetchUsers(url);
+  }, [searchQuery]);
+
+  if (error) {
+    return <div className="text-white text-center mt-5">Error: {error}</div>;
+  }
 
   return (
     <div>
-      <UserContainer users={users} searchUser={searchUser}/>
+      <UserContainer users={users} />
     </div>
   );
 };
