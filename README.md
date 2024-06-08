@@ -1,8 +1,14 @@
-# React + Vite
+# GitHub User Finder
+An app where you can search for github users and display their info
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# About this project 🎯
+GitHub Finder makes it super easy to find any random GitHub user and see their work. Just start typing any username and with each key stroke if there is any GitHub user with that username the details about their profile.
 
-Currently, two official plugins are available:
+# Technologies 🛠
+- `React.js`
+- `React-router`
+- `Tailwind CSS`
+- `React icons`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Live demo🎥
+https://github-finder-hritik-sharma.vercel.app/
