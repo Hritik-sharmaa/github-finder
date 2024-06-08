@@ -42,7 +42,7 @@ const UserData = () => {
 
   return (
     <>
-      <div className="py-5 text-gray-200">
+      <div className="py-5 text-gray-200 font-mono">
         <button
           className="bg-gray-900 text-gray-200 py-2 px-4 font-medium mx-4 my-4 rounded"
           onClick={() => navigate("/")}>
@@ -51,11 +51,11 @@ const UserData = () => {
         {user.length > 0 ? (
           user.map((udata, i) => (
             <div
-              className="flex justify-center flex-col md:flex-row items-center md:items-start gap-10 px-4 md:px-0"
+              className="flex flex-col justify-center md:flex-row items-center md:items-start gap-10 px-4 md:px-0"
               key={i}>
               <img
                 src={udata.avatar_url}
-                className="w-[350px] rounded border-2 border-gray-600 mt-3 md:mt-0"
+                className="w-[200px] md:w-[350px] rounded border-2 border-gray-600 mt-3 md:mt-0"
                 alt={`${udata.login}'s avatar`}
               />
               <div className="text-xl px-3">
@@ -89,6 +89,7 @@ const UserData = () => {
                 <a
                   href={udata.html_url}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-gray-900 text-gray-200 py-2 px-4 font-medium rounded">
                   Visit
                 </a>
@@ -101,11 +102,13 @@ const UserData = () => {
         <Tabs type={type} setType={setType} />
       </div>
       {type === "repos" && (
-        <div className="text-gray-200 grid md:grid-cols-2 grid-cols-1 gap-7 w-10/12 mx-auto">{infos && <Repos repos={infos} />}</div>
+        <div className="text-gray-200 grid md:grid-cols-2 grid-cols-1 gap-7 w-10/12 mx-auto">
+          {infos && <Repos repos={infos} />}
+        </div>
       )}
       {type === "received_events" && (
-        <div className="text-gray-200">
-          <Events />
+        <div className="text-gray-200 grid md:grid-cols-2 grid-cols-1 gap-7 w-10/12 mx-auto">
+          {infos && <Events events={infos} />}
         </div>
       )}
       {type === "followers" && (

@@ -32,7 +32,7 @@ const User = ({ searchQuery }) => {
   }
 
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <UserContainer users={users} />
     </div>
   );
